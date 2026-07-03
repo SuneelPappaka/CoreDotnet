@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<CoreDotnet.Services.IPaymentService, CoreDotnet.Services.PaypalServices>();
+builder.Services.AddScoped<CoreDotnet.Services.IPaymentService, CoreDotnet.Services.RayZorPayServices>();
+builder.Services.AddScoped<CoreDotnet.Services.INotificationService, CoreDotnet.Services.NotificationServicess>();
+builder.Services.AddDbContext<CoreDotnet.Data.ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CoreDotnetDBConnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
