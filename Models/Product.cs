@@ -7,9 +7,17 @@ namespace CoreDotnet.Models
     {
         [Key]
         public int? Id { get; set; }
+        [Required(ErrorMessage ="Product Name Is Required")]
         public string ProductName { get; set; }
+        [Required(ErrorMessage = "Description is required.")]
+        [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters.")]
         public string Description { get; set; }
+        [Required(ErrorMessage = "Price is required.")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero.")]
         public decimal Price { get; set; }
+        [Required(ErrorMessage = "Image Path is required.")]
+        [StringLength(200, ErrorMessage = "Image Path cannot exceed 200 characters.")]
+        [FileExtensions(Extensions = "jpg,jpeg,png,gif", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png, gif).")]
         public string ImagePath { get; set; }
         public DateTime CreatedAt { get; set; }
         [NotMapped]
