@@ -14,7 +14,8 @@ namespace CoreDotnet.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+          List<Product> _products=  _applicationDbContext.Products.ToList();
+            return View(_products);
         }
         public IActionResult Create()
         {
