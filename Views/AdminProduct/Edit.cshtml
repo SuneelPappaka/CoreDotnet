@@ -1,0 +1,54 @@
+﻿@model Product
+
+<div class="card border-0">
+    <div class="card-header ms-0 text-white" style="background-color:darkcyan">
+        <h2 class="p-2 text-center">Edit Product</h2>
+
+    </div>
+    <div class="card-body mt-3">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="ProductName" class="form-control" placeholder="Product Name" />
+                @*  <label class="ms-1 text-muted">Product Name</label> *@
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Description" class="form-control" placeholder="Description" />
+                @*  <label class="ms-1 text-muted">Product Name</label> *@
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Price" class="form-control" placeholder="Price" />
+                @*  <label class="ms-1 text-muted">Product Name</label> *@
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3 text-muted">
+                <label class="form-label">Product Image</label>
+                @if (!string.IsNullOrEmpty(@Model.ImagePath))
+                {
+                    <img src="@Url.Content(@Model.ImagePath)" alt="Product Image" style="max-width: 100px; max-height: 100px;" />
+                }
+                <input asp-for="ImageFile" type="file" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <a asp-action="Index" class="btn btn-secondary w-100">Back</a>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="w-100 btn text-white" style="background-color:darkcyan">Update Product</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

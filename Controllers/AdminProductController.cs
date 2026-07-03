@@ -52,6 +52,12 @@ namespace CoreDotnet.Controllers
             return View(_product);
             }
             
+            
+        }
+        public async Task<IActionResult> Edit(int Id)
+        {
+           Product _products = await _applicationDbContext.Products.FindAsync(Id);
+            return View(_products);
         }
     }
 }
