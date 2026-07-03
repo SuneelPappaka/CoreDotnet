@@ -18,13 +18,13 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();  
 }
-app.UseStaticFiles();
-app.UseHttpsRedirection();
-app.UseRouting();
+app.UseStaticFiles();// allow serving static files from wwwroot folder
+app.UseHttpsRedirection();// redirect HTTP requests to HTTPS
+app.UseRouting();// add routing middleware where the routing decisions are made based on the incoming request
 
-app.UseAuthorization();
+app.UseAuthorization();// add authorization middleware to enforce access control policies, check if the user is authorized to access the requested resource
 
-app.MapStaticAssets();
+app.MapStaticAssets();// map static assets to the request pipeline, allowing them to be served directly without going through the MVC pipeline
 
 app.MapControllerRoute(
     name: "default",
