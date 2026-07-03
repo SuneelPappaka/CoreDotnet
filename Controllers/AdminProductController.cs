@@ -59,5 +59,49 @@ namespace CoreDotnet.Controllers
            Product _products = await _applicationDbContext.Products.FindAsync(Id);
             return View(_products);
         }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Product _product)
+        {
+            if (_product.ProductName == "" || _product.Description == "" || _product.Price <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Please fill in all required fields.");
+            }
+            ;
+            ModelState.Remove(nameof(_product.ImagePath));
+            if (ModelState.IsValid)
+            {
+                if (_product.ImageFile != null && _product.ImageFile.Length > 0)
+                {
+                    var fileName = Path.GetFileName(_product.ImageFile.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        _product.ImageFile.CopyTo(stream);
+                    }
+                    _product.ImagePath = "/images/" + fileName;
+
+                }
+                _product.CreatedAt = DateTime.Now;
+                _applicationDbContext.Products.Update(_product);
+
+                await _applicationDbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(_product);
+            }
+        }
+        public async Task<IActionResult> Delete(int Id)
+        {
+            Product _products = await _applicationDbContext.Products.FindAsync(Id);
+            if(_products != null)
+            {
+                _applicationDbContext.Products.Remove(_products);
+            }
+            await _applicationDbContext.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+        }
+
     }
 }
