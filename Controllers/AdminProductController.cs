@@ -23,20 +23,30 @@ namespace CoreDotnet.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Product _product)
         {
-            if(_product.ImageFile != null && _product.ImageFile.Length > 0)
+            ModelState.Remove(nameof(_product.ImagePath));
+            if (ModelState.IsValid)
             {
-                var fileName = Path.GetFileName(_product.ImageFile.FileName);
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                if (_product.ImageFile != null && _product.ImageFile.Length > 0)
                 {
-                    _product.ImageFile.CopyTo(stream);
+                    var fileName = Path.GetFileName(_product.ImageFile.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        _product.ImageFile.CopyTo(stream);
+                    }
+                    _product.ImagePath = "/images/" + fileName;
+                   
                 }
-                _product.ImagePath = "/images/" + fileName;
+                _product.CreatedAt = DateTime.Now;
+                _applicationDbContext.Products.Add(_product);
+
+                await _applicationDbContext.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
-            _applicationDbContext.Products.Add(_product);
-          
-           await _applicationDbContext.SaveChangesAsync();
-            return RedirectToAction("Index");
+            else { 
+            return View(_product);
+            }
+            
         }
     }
 }

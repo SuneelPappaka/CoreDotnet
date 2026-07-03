@@ -15,12 +15,12 @@ namespace CoreDotnet.Models
         [Required(ErrorMessage = "Price is required.")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Price must be greater than zero.")]
         public decimal Price { get; set; }
-        [Required(ErrorMessage = "Image Path is required.")]
-        [StringLength(200, ErrorMessage = "Image Path cannot exceed 200 characters.")]
-        [FileExtensions(Extensions = "jpg,jpeg,png,gif", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png, gif).")]
+        
         public string ImagePath { get; set; }
         public DateTime CreatedAt { get; set; }
         [NotMapped]
+        [Required(ErrorMessage = "Image File is required.")]
+        //[FileExtensions(Extensions = "jpg,jpeg,png,gif", ErrorMessage = "Please upload a valid image file (jpg, jpeg, png, gif).")]
         public IFormFile? ImageFile { get; set; }
     }
 }
