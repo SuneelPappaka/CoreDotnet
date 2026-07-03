@@ -23,6 +23,10 @@ namespace CoreDotnet.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Product _product)
         {
+            if(_product.ProductName== "" || _product.Description == "" || _product.Price <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Please fill in all required fields.");
+            };
             ModelState.Remove(nameof(_product.ImagePath));
             if (ModelState.IsValid)
             {
