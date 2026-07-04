@@ -1,0 +1,51 @@
+﻿@model Product
+<div class="card border-0">
+    <div class="card-header ml-0 text-white" style="background-color:darkred">
+        <h1 class="p-2 text-center">Delete Product</h1>
+    </div>
+    <div class="card-body mt-3">
+        <h5 class="text-danger text-center mb-4">Are You Sure Want To Delete This Product?</h5>
+        <div class="row mb-3">
+            <div class="col-md-4 text-center">
+                @if (!string.IsNullOrEmpty(Model.ImagePath))
+                {
+                    <img src="@Model.ImagePath" class="img-thumbnail" style="height: 150px;width:150px;" />
+                }
+                else
+                {
+                    <img src="https://placehold.co/200x200/png" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;" />
+                }
+                
+            </div>
+            <div class="col-md-8">
+                <div class="form-floating mb-3">
+                    <input asp-for="ProductName" class="form-control" readonly disabled />
+                    <label asp-for="ProductName" class="ms-2 text-muted">Product Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea asp-for="Description" class="form-control" style="height:100px" disabled>
+
+                        </textarea>
+                    <label asp-for="Description" class="ms-2 text-muted">Description</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input asp-for="Price" class="form-control" placeholder="Price" readonly />
+                    <label asp-for="Price" class="ms-2 text-muted">Price</label>
+                </div>
+
+            </div>
+            <form asp-action="DeleteConfirmed" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex justify-content-between">
+                    <div class="col-3">
+                        <a asp-action="Index" class="btn btn-secondary w-100">Back</a>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-danger w-100">Yes, Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -94,13 +94,41 @@ namespace CoreDotnet.Controllers
         }
         public async Task<IActionResult> Delete(int Id)
         {
-            Product _products = await _applicationDbContext.Products.FindAsync(Id);
-            if(_products != null)
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            var _products = await _applicationDbContext.Products.FindAsync(Id);
+            if (_products == null)
+            {
+                return NotFound();
+            }
+            //if(_products != null)
+            //{
+            //    _applicationDbContext.Products.Remove(_products);
+            //}
+            //await _applicationDbContext.SaveChangesAsync();
+            //    return RedirectToAction(nameof(Index));
+            return View(_products);
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            var _products = await _applicationDbContext.Products.FindAsync(Id);
+            if (_products == null)
+            {
+                return NotFound();
+            }
+            if (_products != null)
             {
                 _applicationDbContext.Products.Remove(_products);
             }
             await _applicationDbContext.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index));
         }
 
     }
