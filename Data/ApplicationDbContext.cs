@@ -15,6 +15,10 @@ namespace CoreDotnet.Data
         public DbSet<CoreDotnet.Models.AdminProducts> AdminProducts
         {
             get; set;
-        }   
+        }
+        public DbSet<CoreDotnet.Models.CartItem> CartItem
+        {
+            get; set;
+        }
     }
 }
