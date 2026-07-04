@@ -30,6 +30,28 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="AdminProduct" asp-action="Index">View All Products</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity.IsAuthenticated)
+                            {
+                            <li class="nav-item">
+                                <span class="nav-link">Hello, @User.Identity.Name</span>
+                             </li>
+                             <li class="nav-item">
+                               <form method="post" asp-controller="Account" asp-action="LogOut">
+                                   <button type="submit" class="btn btn-link nav-link w-100">LogOut</button>
+                               </form>
+                            </li>
+                            }
+                            else
+                            {
+                            <li class="nav-item">
+                                <span class="nav-link" asp-controller="Account" asp-action="Login">Login</span>
+                            </li>
+                            <li class="nav-item">
+                                <span class="nav-link" asp-controller="Account" asp-action="Register">Register</span>
+                            </li>
+                            }
+                        </ul>
                 </div>
             </div>
         </nav>
