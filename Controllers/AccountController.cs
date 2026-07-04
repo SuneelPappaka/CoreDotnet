@@ -34,17 +34,12 @@ namespace CoreDotnet.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-           var result = await _signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, false, true);
+           var result = await _signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password, loginViewModel.RememberMe, false);
             if (result.Succeeded)
             {
-                if (!string.IsNullOrEmpty(loginViewModel.ReturnUrl) && Url.IsLocalUrl(loginViewModel.ReturnUrl))
-                {
-                    return Redirect(loginViewModel.ReturnUrl);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                
+                    return RedirectToAction("Index", "Product");
+                
             } 
             ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
             return View(loginViewModel);
@@ -53,7 +48,7 @@ namespace CoreDotnet.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Product");
         }
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel _registerViewModel)
