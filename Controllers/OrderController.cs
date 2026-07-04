@@ -1,8 +1,10 @@
 ﻿using CoreDotnet.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDotnet.Controllers
 {
+    [Authorize]/////if authorize we can access any views
     public class OrderController : Controller
     {
         private readonly IPaymentService _paymentService;

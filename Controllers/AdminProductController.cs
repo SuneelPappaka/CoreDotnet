@@ -1,9 +1,12 @@
 ﻿using CoreDotnet.Data;
 using CoreDotnet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDotnet.Controllers
 {
+    [Authorize(Roles ="Admin")]/////if authorize we can access any views  ,access only for admin users
+
     public class AdminProductController : Controller
     {
 

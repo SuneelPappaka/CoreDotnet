@@ -1,9 +1,11 @@
 ﻿using CoreDotnet.Data;
 using CoreDotnet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDotnet.Controllers
 {
+    [Authorize]/////if authorize we can access any views
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _applicationDbContext;

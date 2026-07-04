@@ -38,18 +38,18 @@
                              </li>
                              <li class="nav-item">
                                <form method="post" asp-controller="Account" asp-action="LogOut">
-                                   <button type="submit" class="btn btn-link nav-link w-100">LogOut</button>
+                                   <button type="submit" class="btn btn-link nav-link">LogOut</button>
                                </form>
                             </li>
                             }
                             else
                             {
-                            <li class="nav-item">
-                                <span class="nav-link" asp-controller="Account" asp-action="Login">Login</span>
-                            </li>
-                            <li class="nav-item">
-                                <span class="nav-link" asp-controller="Account" asp-action="Register">Register</span>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
                             }
                         </ul>
                 </div>
