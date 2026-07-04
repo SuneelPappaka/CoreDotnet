@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDotnet.Controllers
 {
-    [Authorize]/////if authorize we can access any views
+    /// <summary>
+    /// [Authorize]/////if authorize we can access any views
+    /// </summary>
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _applicationDbContext;

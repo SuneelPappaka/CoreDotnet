@@ -5,7 +5,9 @@ using System.Diagnostics;
 
 namespace CoreDotnet.Controllers
 {
-    [Authorize]/////if authorize we can access any views
+    /// <summary>
+    /// [Authorize]/////if authorize we can access any views
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
