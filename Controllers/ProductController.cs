@@ -2,6 +2,7 @@
 using CoreDotnet.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace CoreDotnet.Controllers
@@ -16,8 +17,13 @@ namespace CoreDotnet.Controllers
         {
             _applicationDbContext = applicationDbContext;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userid != null)
+            {
+                HttpContext.Session.SetInt32(SD.SessionCart, _applicationDbContext.CartItem.Where(x => x.UserId == userid).Count());
+            }
             List<Product> _products = _applicationDbContext.Products.ToList();
             return View(_products);
         }

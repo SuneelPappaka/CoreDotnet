@@ -13,6 +13,16 @@ builder.Services.AddDbContext<CoreDotnet.Data.ApplicationDbContext>(options =>
 builder.Services.AddIdentity<CoreDotnet.Data.ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
     .AddEntityFrameworkStores<CoreDotnet.Data.ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+//////////Session Configuration
+builder.Services.AddDistributedMemoryCache(); // Add distributed memory cache for session state
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set the session timeout to 30 minutes
+    options.Cookie.HttpOnly = true; // Make the session cookie accessible only via HTTP
+    options.Cookie.IsEssential = true; // Mark the session cookie as essential for GDPR compliance
+});
+////Session Configuration End
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,6 +50,7 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     await SendRoles(services);
 }
+app.UseSession();// add session middleware to the request pipeline, enabling session state management for the application
 app.UseStaticFiles();// allow serving static files from wwwroot folder
 app.UseHttpsRedirection();// redirect HTTP requests to HTTPS
 app.UseRouting();// add routing middleware where the routing decisions are made based on the incoming request
