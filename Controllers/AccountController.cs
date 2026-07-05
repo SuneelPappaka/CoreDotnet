@@ -48,6 +48,7 @@ namespace CoreDotnet.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
+            HttpContext.Session.SetInt32(SD.SessionCart, 0);
             return RedirectToAction("Index", "Product");
         }
         [HttpPost]
