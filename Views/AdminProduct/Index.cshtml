@@ -1,6 +1,12 @@
-﻿@model IEnumerable<Product> 
+﻿@model IEnumerable<Product>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 @if (TempData["Success"] != null)
 {
+    <script>
+        toaster.success('@TempData["Success"]')
+    </script>
     <h2>@TempData["Success"]</h2>
 }
 <div class="row align-items-center mb-3">
