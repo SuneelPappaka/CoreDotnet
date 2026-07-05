@@ -19,5 +19,54 @@ namespace CoreDotnet.Controllers
             var cartItems = _applicationDbContext.CartItem.Where(x=>x.UserId==userid).Include(x=>x.Product).ToList();
             return View(cartItems);
         }
+        public async Task<ActionResult> plus(int cartid)
+        {
+            var cartfromDb = _applicationDbContext.CartItem.FirstOrDefault(x => x.Id == cartid);
+            if (cartfromDb == null)
+            {
+                NotFound();
+            }
+            cartfromDb.Quantit += 1;
+            _applicationDbContext.CartItem.Update(cartfromDb);
+           await _applicationDbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<ActionResult> minus(int cartid)
+        {
+            var cartfromDb = _applicationDbContext.CartItem.FirstOrDefault(x => x.Id == cartid);
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (cartfromDb == null)
+            {
+                NotFound();
+            }
+            if (cartfromDb.Quantit <= 1)
+            {
+                _applicationDbContext.CartItem.Remove(cartfromDb);
+                await _applicationDbContext.SaveChangesAsync();
+                var count = _applicationDbContext.CartItem.Where(x => x.UserId == userid).Count();
+                HttpContext.Session.SetInt32(SD.SessionCart, count);
+            }
+            else
+            {
+                cartfromDb.Quantit -= 1;
+                _applicationDbContext.CartItem.Update(cartfromDb);
+                await _applicationDbContext.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<ActionResult> remove(int cartid)
+        {
+            var cartfromDb = _applicationDbContext.CartItem.FirstOrDefault(x => x.Id == cartid);
+            var userid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (cartfromDb == null)
+            {
+                NotFound();
+            }
+                _applicationDbContext.CartItem.Remove(cartfromDb);
+                await _applicationDbContext.SaveChangesAsync();
+                var count = _applicationDbContext.CartItem.Where(x => x.UserId == userid).Count();
+           
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
