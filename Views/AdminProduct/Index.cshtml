@@ -5,9 +5,8 @@
 @if (TempData["Success"] != null)
 {
     <script>
-        toaster.success('@TempData["Success"]')
+        toastr.success('@TempData["Success"]')
     </script>
-    <h2>@TempData["Success"]</h2>
 }
 <div class="row align-items-center mb-3">
     <div class="col-md-2">
