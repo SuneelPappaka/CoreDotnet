@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoreDotnet.Controllers
 {
     [Authorize(Roles ="Admin")]/////if authorize we can access any views  ,access only for admin users
+    // Tempdata we can access any where in the controller
+    // Viewdata and viewbag access only in the action
 
     public class AdminProductController : Controller
     {
@@ -49,6 +51,7 @@ namespace CoreDotnet.Controllers
                 _applicationDbContext.Products.Add(_product);
 
                 await _applicationDbContext.SaveChangesAsync();
+                TempData["Success"] = "Record Inserted Successfully";
                 return RedirectToAction("Index");
             }
             else { 
@@ -88,6 +91,7 @@ namespace CoreDotnet.Controllers
                 _applicationDbContext.Products.Update(_product);
 
                 await _applicationDbContext.SaveChangesAsync();
+                TempData["Success"] = "Record Updated Successfully";
                 return RedirectToAction("Index");
             }
             else
@@ -131,6 +135,7 @@ namespace CoreDotnet.Controllers
                 _applicationDbContext.Products.Remove(_products);
             }
             await _applicationDbContext.SaveChangesAsync();
+            TempData["Success"] = "Record Deleted Successfully";
             return RedirectToAction(nameof(Index));
         }
 
