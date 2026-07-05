@@ -1,13 +1,4 @@
 ﻿@model IEnumerable<Product>
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-@if (TempData["Success"] != null)
-{
-    <script>
-        toastr.success('@TempData["Success"]')
-    </script>
-}
 <div class="row align-items-center mb-3">
     <div class="col-md-2">
         <h2 class="text-secondary">Product Lists</h2>

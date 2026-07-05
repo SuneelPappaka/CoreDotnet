@@ -29,6 +29,7 @@ namespace CoreDotnet.Controllers
             cartfromDb.Quantit += 1;
             _applicationDbContext.CartItem.Update(cartfromDb);
            await _applicationDbContext.SaveChangesAsync();
+            TempData["Success"] = "Card Item Added Successfully";
             return RedirectToAction(nameof(Index));
         }
         public async Task<ActionResult> minus(int cartid)
@@ -52,6 +53,7 @@ namespace CoreDotnet.Controllers
                 _applicationDbContext.CartItem.Update(cartfromDb);
                 await _applicationDbContext.SaveChangesAsync();
             }
+            TempData["Success"] = "Card Item Deleted Successfully";
             return RedirectToAction(nameof(Index));
         }
         public async Task<ActionResult> remove(int cartid)
@@ -65,7 +67,7 @@ namespace CoreDotnet.Controllers
                 _applicationDbContext.CartItem.Remove(cartfromDb);
                 await _applicationDbContext.SaveChangesAsync();
                 var count = _applicationDbContext.CartItem.Where(x => x.UserId == userid).Count();
-           
+            TempData["Success"] = "Card Item Removed Successfully";
             return RedirectToAction(nameof(Index));
         }
     }
