@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Product>
 <p>@ViewBag.ProductCount</p>
+<p>
+    @ViewData["View data string message"]<br />
+    View data int message : @Convert.ToInt32(@ViewData["View data int message"]).
+</p>
 <div class="row align-items-center mb-3">
     <div class="col-md-6">
         <h2 class="text-secondary">Product Lists</h2>
