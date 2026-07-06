@@ -11,7 +11,9 @@ namespace CoreDotnet.Controllers
 
     public class AdminProductController : Controller
     {
-
+        /// <summary>
+        /// ViewBag is a dynamic object that allows you to pass data from a
+        /// </summary>
         private readonly ApplicationDbContext _applicationDbContext;
         public AdminProductController(ApplicationDbContext applicationDbContext)
         {
@@ -20,7 +22,16 @@ namespace CoreDotnet.Controllers
         public IActionResult Index()
         {
           List<Product> _products=  _applicationDbContext.Products.ToList();
+            
+            ViewBag.ProductCount = "Total Products are "+_products.Count();
+
+            ViewBag.LatestProduct =
+                _products.OrderByDescending(p => p.CreatedAt).FirstOrDefault()?.ProductName ?? "No products available";
+
+            ViewBag.MaxPrice = _products.Count() > 0 ? _products.Max(p => p.Price) : 0;
             return View(_products);
+
+
         }
         public IActionResult Create()
         {
