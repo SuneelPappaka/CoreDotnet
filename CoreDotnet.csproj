@@ -20,4 +20,10 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreDotnet.DataAccess\CoreDotnet.DataAccess.csproj" />
+    <ProjectReference Include="..\CoreDotnet.Models\CoreDotnet.Models.csproj" />
+    <ProjectReference Include="..\CoreDotnet.Utility\CoreDotnet.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

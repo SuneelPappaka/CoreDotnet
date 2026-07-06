@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http;
+﻿@using CoreDotnet.Utility
+@using Microsoft.AspNetCore.Http;
 @inject IHttpContextAccessor HttpContextAccessor;
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +61,7 @@
                              </li>
                              <li class="nav-item">
                                <form method="post" asp-controller="Account" asp-action="LogOut">
-                                   <button type="submit" class="btn btn-link nav-link">LogOut</button>
+                                   <button type="submit" class="btn btn-link nav-link text-white">LogOut</button>
                                </form>
                             </li>
                             }

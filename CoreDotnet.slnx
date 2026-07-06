@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="../CoreDotnet.DataAccess/CoreDotnet.DataAccess.csproj" Id="49cad605-c106-4d0a-a7cf-90cbd49a408d" />
+  <Project Path="../CoreDotnet.Models/CoreDotnet.Models.csproj" Id="5165b618-17d6-4fd9-b349-79780670c3bc" />
+  <Project Path="../CoreDotnet.Utility/CoreDotnet.Utility.csproj" Id="a1b0c003-3686-4369-b716-38013da64869" />
   <Project Path="CoreDotnet.csproj" />
 </Solution>

@@ -1,5 +1,6 @@
-﻿using CoreDotnet.Data;
+﻿using CoreDotnet.DataAccess.Data;
 using CoreDotnet.Models;
+using CoreDotnet.Utility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;

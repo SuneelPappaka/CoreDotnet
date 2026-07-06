@@ -1,10 +1,10 @@
-﻿using CoreDotnet.Data;
-using CoreDotnet.ViewModels;
+﻿using CoreDotnet.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-
+using CoreDotnet.DataAccess.Data;
+using CoreDotnet.Utility;
 namespace CoreDotnet.Controllers
 {
     public class AccountController : Controller

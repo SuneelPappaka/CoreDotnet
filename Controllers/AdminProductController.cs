@@ -1,5 +1,5 @@
-﻿using CoreDotnet.Data;
-using CoreDotnet.Models;
+﻿using CoreDotnet.DataAccess.Data;
+using CoreDotnet.Models.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
