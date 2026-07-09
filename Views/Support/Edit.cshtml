@@ -1,0 +1,66 @@
+﻿@model CreateTicketViewModel
+@* <h2>Edit Tickets</h2>
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Userid" />
+    <div class="form-group">
+        <label asp-for="Subject"></label>
+        <input asp-for="Subject" class="form-control" />
+        <span asp-validation-for="Subject" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <select asp-for="Status ">
+            <option value="Open">Open</option>
+            <option value="InProgress">InProgress</option>
+            <option value="Close">Close</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Ticket</button>
+</form> *@
+
+<div class="card border-0">
+    <div class="card-header ms-0 text-white" style="background-color:darkcyan">
+        <h2 class="p-2 text-center">Edit Tickets</h2>
+
+    </div>
+    <div class="card-body mt-3">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Userid" />
+            <div class="form-floating mb-3">
+                <input asp-for="Subject" class="form-control"  />
+                @*  <label class="ms-1 text-muted">Product Name</label> *@
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Description" class="form-control" placeholder="Description" />
+                @*  <label class="ms-1 text-muted">Product Name</label> *@
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <label asp-for="Status"></label>
+                <select asp-for="Status" class="form-control">
+                    <option value="Open">Open</option>
+                    <option value="InProgress">InProgress</option>
+                    <option value="Close">Close</option>
+                </select>
+            </div>
+             
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <a asp-action="TicketsList" class="btn btn-secondary w-100"> Back</a>
+                </div>
+                <div class="col-6">
+
+                    <button type="submit" class="w-100 btn text-white" style="background-color:darkcyan">Update Ticket</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

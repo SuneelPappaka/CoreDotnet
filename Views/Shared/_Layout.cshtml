@@ -35,7 +35,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="AdminProduct" asp-action="Index">View All Products</a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Support" asp-action="CreateTicket">Create Ticket</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Support" asp-action="TicketsList">View Tickets</a>
+                        </li>
                         @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.SessionCart) != null)
                             {
                             <li class="nav-item">

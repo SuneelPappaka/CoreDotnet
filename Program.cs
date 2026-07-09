@@ -18,7 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
-
+builder.Services.AddHttpClient();
 //////////Session Configuration
 builder.Services.AddDistributedMemoryCache(); // Add distributed memory cache for session state
 builder.Services.AddSession(options =>
