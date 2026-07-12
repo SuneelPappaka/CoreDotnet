@@ -19,8 +19,8 @@ namespace CoreDotnet.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTicket(CreateTicketViewModel createTicketViewModel)
         {
-            //if (ModelState.IsValid)
-            //{
+            if (ModelState.IsValid)
+            {
                 // Save the ticket to the database or perform any other necessary actions
                 // For example, you can use a service to save the ticket
                 // await _ticketService.CreateTicketAsync(createTicketViewModel);
@@ -47,7 +47,7 @@ namespace CoreDotnet.Controllers
                     ModelState.AddModelError(string.Empty, "An error occurred while creating the ticket.");
                 }
                 return View(createTicketViewModel);
-            //}
+            }
             return View(createTicketViewModel);
         }
 
